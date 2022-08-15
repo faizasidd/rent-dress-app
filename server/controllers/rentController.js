@@ -12,8 +12,8 @@ exports.index = (_req, res) => {
 
 exports.rentDress = (req, res) => {
   knex('dress')
-    .join('listing', 'listing.id', 'dress.id')
-    .join('user', 'user.id', 'dress.id')
+    .join('listing', 'listing.dress_id', 'dress.id')
+    .join('user', 'user.id', 'listing.user_id')
     .select('dress.id','dress.dressname', 'dress.description', 'dress.condition', 'dress.designer', 'dress.size', 'dress.image', 'listing.rentprice', 'user.name', 'user.phone', 'user.email', 'user.location')
     .where({ dress_id: req.params.id })
     .then((data) => {

@@ -55,20 +55,45 @@ exports.addDress = (req, res) => {
 
   knex('dress')
     .insert(dressDetails)
-    // .join('category', 'category.id', 'dress.category_id')
     .then ((data) => {
      listingDetails.user_id = 1
      listingDetails.dress_id = data[0]
       return knex('listing')
       .insert(listingDetails)
     })
-    // .join('listing', 'listing.dress_id', 'dress.id')
-    // .select('dress.id','dress.name', 'dress.description', 'dress.designer', 'dress.size', 'dress.image', 'category.category', 'listing.buyprice')
-    // .where({ dress_id: req.params.id })
     .then((data) => {
       // For POST requests we need to respond with 201 and the location of the newly created record
       const newDressURL = `/dress/${data[0]}`;
       res.status(201).location(newDressURL).send(newDressURL);
     })
     .catch((err) => res.status(400).send(`Error creating Dress: ${err}`));
+};
+
+exports.updateDress = (req, res) => {
+  const dressDetails = req.body.dressDetails;  
+  const listingDetails = req.body.listingDetails;       
+  knex('dress')
+    .update(dressDetails, listingDetails)
+    .where({ id: req.params.id })
+    .then(() => {
+      res.status(200).send(`Dress with id: ${req.params.id} has been updated`);
+    })
+    .catch((err) =>
+      res.status(400).send(`Error updating Dress ${req.params.id} ${err}`)
+    );
+};
+
+exports.deleteDress = (req, res) => {
+  const dressDetails = req.body.dressDetails;  
+  const listingDetails = req.body.listingDetails; 
+  knex('dress')
+    .delete(dressDetails, listingDetails)
+    .where({ id: req.params.id })
+    .then(() => {
+      // For DELETE response we can use 204 status code
+      res.status(204).send(`Dress with id: ${req.params.id} has been deleted`);
+    })
+    .catch((err) =>
+      res.status(400).send(`Error deleting Dress ${req.params.id} ${err}`)
+    );
 };

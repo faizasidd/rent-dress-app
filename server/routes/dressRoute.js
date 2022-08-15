@@ -13,5 +13,10 @@ router.route('/:id/category').get(dressController.dressCategory);
 // Create/Post a new dress
 router.route('/').post(dressController.addDress);
 
+// Update an existing dress using PUT
+router.route('/:id').put(dressController.updateDress);
+
+// Delete an existing dress using DELETE
+router.route('/:id').delete(dressController.deleteDress);
 
 module.exports = router;
