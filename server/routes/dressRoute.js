@@ -8,7 +8,7 @@ router.route('/').get(dressController.index);
 router.route('/:id').get(dressController.singleDress);
 
 // Get dress from a particular category
-router.route('/:id/category').get(dressController.dressCategory);
+router.route('/category/:id').get(dressController.dressCategory);
 
 // Create/Post a new dress
 router.route('/').post(dressController.addDress);

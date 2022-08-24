@@ -1,0 +1,62 @@
+@use './breakpoints' as *;
+@use './colors' as *;
+
+// TYPOGRAPHY
+
+@mixin font-styling($fw, $c: $black) {
+  font-weight: $fw;
+  color: $c;
+}
+@mixin format-text($lh, $m: 0, $fs: 1rem) {
+  font-size: $fs;
+  line-height: $lh;
+  margin: $m;
+}
+
+// Flex box
+
+@mixin flex(
+  $justify-content: flex-start,
+  $align-items: stretch,
+  $box-sizing: content-box,
+  $flex-direction: row,
+  $flex-wrap: nowrap
+) {
+  display: flex;
+  justify-content: $justify-content;
+  align-items: $align-items;
+  box-sizing: $box-sizing;
+  flex-direction: $flex-direction;
+  flex-wrap: $flex-wrap;
+}
+
+// Media query 
+
+@mixin mobile {
+    @media only screen and (max-width: $mobileBp) {
+      @content;
+    }
+  }
+  @mixin tablet {
+    @media only screen and (min-width: $tabletBp) and (max-width: 1279px) {
+      @content;
+    }
+  }
+  @mixin desktop {
+    @media only screen and (min-width: $desktopBp) {
+      @content;
+    }
+  }
+
+// Typography
+
+@mixin font-styling($fw, $c: $primary-text) {
+    font-family: 'Roboto',sans-serif;
+    font-weight: $fw;
+    color: $c;
+  }
+  @mixin format-text($lh, $m:0, $fs: 1rem) {
+    font-size: $fs;
+    line-height: $lh;
+    margin: $m;
+  }

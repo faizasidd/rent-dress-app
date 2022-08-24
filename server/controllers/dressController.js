@@ -2,7 +2,8 @@ const knex = require('knex')(require('../knexfile').development);
 
 exports.index = (_req, res) => {
   knex('dress')
-    .select('id','dressname', 'description', 'condition', 'designer', 'size', 'image')
+  .join('listing', 'listing.id', 'dress.id')
+    .select('dress.id','dress.dressname', 'dress.description', 'dress.condition', 'dress.designer', 'dress.size', 'dress.image', 'listing.buyprice')
     .then((data) => {
       res.status(200).json(data);
     })

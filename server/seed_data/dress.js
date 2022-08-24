@@ -6,7 +6,7 @@ module.exports = [
       condition: 'Good',
       designer: 'Pnina Tornai',
       size: 'M',
-      image: './public/images/dress1.png',
+      image: 'http://localhost:8080/images/dress1.png',
       category_id: 4,
     },
     {
@@ -16,7 +16,7 @@ module.exports = [
       condition: 'Very good',
       designer: 'Martina Liana',
       size: 'S',
-      image: './public/images/dress2.png',
+      image: 'http://localhost:8080/images/dress2.png',
       category_id: 2,
     },
     {
@@ -26,7 +26,7 @@ module.exports = [
         condition: 'Good',
         designer: 'Pnina Tornai',
         size: 'S',
-        image: './public/images/dress3.png',
+        image: 'http://localhost:8080/images/dress3.png',
         category_id: 3,
     },
     {
@@ -36,7 +36,7 @@ module.exports = [
         condition: 'Good',
         designer: 'Martina Liana',
         size: 'M',
-        image: './public/images/dress4.png',
+        image: 'http://localhost:8080/images/dress4.png',
         category_id: 1,
     },
     {
@@ -46,7 +46,7 @@ module.exports = [
         condition: 'Good',
         designer: 'All Who Wander',
         size: 'L',
-        image: './public/images/dress5.png',
+        image: 'http://localhost:8080/images/dress5.png',
         category_id: 1,
     },
     {
@@ -56,7 +56,7 @@ module.exports = [
         condition: 'Good',
         designer: 'Pronovias',
         size: 'S',
-        image: './public/images/dress6.png',
+        image: 'http://localhost:8080/images/dress6.png',
         category_id: 4,
     },
     {
@@ -66,7 +66,7 @@ module.exports = [
         condition: 'Excellent',
         designer: 'Pnina Tornai',
         size: 'M',
-        image: './public/images/dress7.png',
+        image: 'http://localhost:8080/images/dress7.png',
         category_id: 3,
     },
     {
@@ -76,7 +76,7 @@ module.exports = [
         condition: 'Good',
         designer: 'Reem Acra',
         size: 'S',
-        image: './public/images/dress8.png',
+        image: 'http://localhost:8080/images/dress8.png',
         category_id: 2,
     },
   ];

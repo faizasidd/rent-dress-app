@@ -1,0 +1,69 @@
+@use './mixins' as *;
+@use './colors' as *;
+@use './fonts' as *;
+
+// Page header
+h1 {
+  @include textBold(1.75rem, 2.25rem);
+  @include tablet {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+}
+
+// Subheader
+h2 {
+    @include textBold(1.25rem, 1.75rem);
+    @include tablet {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+  }
+
+
+// Labels links and buttons
+h3 {
+    @include textBold(.8125rem, 1.25rem);
+    @include tablet {
+      font-size: .875rem;
+      line-height: 1.375rem;
+    }
+  }
+
+// Table header
+h4 {
+    @include textRegular(.6875rem, 1rem);
+    @include tablet {
+      font-size: .75rem;
+      line-height: 1.125rem;
+    }
+  }
+
+//Body 
+.p1 {
+    @include textRegular(.9375rem, 1.625rem);
+    @include tablet {
+      font-size: 1rem;
+      line-height: 1.75rem;
+    }
+  }
+
+.p2 {
+    @include textRegular(.8125rem, 1.25rem);
+    @include tablet {
+      font-size: .875rem;
+      line-height: 1.375rem;
+    }
+  }
+
+.p3 {
+    @include textRegular(.6875rem, 1rem);
+    @include tablet {
+      font-size: .75rem;
+      line-height: 1.125rem;
+    }
+  }
+
+
+
+

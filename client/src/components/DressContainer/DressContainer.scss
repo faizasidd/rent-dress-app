@@ -1,0 +1,56 @@
+.dress-container {
+    margin: 0!important;
+    padding: 0!important;
+    font-family: Roboto,sans-serif;
+    box-sizing: border-box;
+}
+
+.dress-container__background {
+    height: 100vh;
+    width: 100%;
+    opacity: 1;
+    background-image: url("../../assets/images/dress1.png"); 
+    background-size: cover;
+}
+
+.back-arrow-box {
+    position: fixed;
+    z-index: 10;
+    min-width: 250px;
+    top: 10%;
+    left: 20%;
+    right: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 15px;
+}
+
+.overlay {
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+// Logo
+
+.top-centered-logo {
+    position: fixed;
+    z-index: 10;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+.home-link:hover {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 660px) {
+    .back-arrow-box {
+        position: fixed;
+        z-index: 10;
+        top: 25%;
+        left: 70%;
+        transform: translate(-50%, -50%);
+    }
+}

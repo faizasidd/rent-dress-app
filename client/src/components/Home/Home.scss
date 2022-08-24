@@ -1,0 +1,114 @@
+.centered-logo {
+    position: fixed;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+.home-grid {
+	margin: 35px 0 0 0;
+	padding: 0;
+	list-style: none;
+	position: relative;
+	width: 100%;
+}
+
+.home-grid li {
+	position: relative;
+	float: left;
+    overflow: hidden;
+	height: 50vh;
+	width: 16.6666667%; /* Fallback */
+	width: calc(100% / 2);
+}
+
+.home-grid .tl {border-right: 1px solid white}
+.home-grid .tr {border-bottom: 1px solid white}
+.home-grid .bl {border-top: 1px solid white}
+.home-grid .br {border-left: 1px solid white}
+
+.home-grid li a,
+.home-grid li a img {
+	display: block;
+	width: 1000px;
+	object-fit: cover;
+	cursor: pointer;
+}
+
+
+/* Flexbox is used for centering the heading */
+.home-grid li a div {
+	position: absolute;
+	left: 10px;
+	top: 10px;
+	right: 10px;
+	bottom: 10px;
+	background: rgba(20, 20, 20, 0.548);
+	display: flex;
+    align-items: center;
+    text-align: center;
+    opacity: 0;
+}
+
+.home-grid li a:hover div {
+    opacity: 1;
+    transition: all 0.2s ease-in-out;
+}
+
+.home-grid li a div h3 {
+	width: max-content;
+	margin:auto !important;
+	color: #fff;
+	text-transform: uppercase;
+	letter-spacing: 5px;
+	font-weight: normal;
+	padding: 6px 10px 4px 10px!important;
+	border: 1px solid white;
+}
+
+/* Example for media query: change number of items per row */
+
+@media screen and (max-width: 1190px) {
+	.home-grid li {
+		width: 20%; /* Fallback */
+		width: calc(100% / 2);
+	}
+}
+
+@media screen and (max-width: 945px) {
+	.home-grid li {
+		width: 25%; /* Fallback */
+		width: -webkit-calc(100% / 1);
+		width: calc(100% / 1);
+	}
+	.centered-logo {
+		top: 10%;
+		width: 40vh;
+	}
+	.home-grid li {
+		border: none !important;
+	}
+}
+
+@media screen and (max-width: 660px) {
+	.main-grid li {
+		min-width: 392px;
+		width: 33.3333333%; /* Fallback */
+		width: calc(100% / 1);
+	}
+	.home-grid li a div {
+		opacity: 1;
+	}
+}
+
+@media screen and (max-width: 660px) {
+	.home-grid li {
+		min-width: 392px;
+		width: 33.3333333%; /* Fallback */
+		width: calc(100% / 1);
+	}
+	.home-grid li a div {
+		opacity: 1;
+	}
+}

@@ -1,0 +1,43 @@
+.header {
+    // margin: 0!important;
+    // padding: 0!important;
+    font-family: Roboto,sans-serif;
+    box-sizing: border-box;
+}
+
+
+.back-arrow-box {
+    position: fixed;
+    z-index: 10;
+    min-width: 250px;
+    top: 10%;
+    left: 20%;
+    right: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 15px;
+}
+
+// Logo
+
+.top-centered-logo {
+    position: fixed;
+    z-index: 10;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+.home-link:hover {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 660px) {
+    .back-arrow-box {
+        position: fixed;
+        z-index: 10;
+        top: 25%;
+        left: 70%;
+        transform: translate(-50%, -50%);
+    }
+}
