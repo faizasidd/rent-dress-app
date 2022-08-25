@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import "./AddDress.scss";
+// import "./AddDress.scss";
+import ".././DressForm/DressForm.scss"
 import arrowBack from "../../assets/icons/back-arrow.png";
 import DressForm from "../DressForm/DressForm";
 import useForm from "../../utils/useForm";
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import Header from "../Header/Header";
 
 const AddDress = (props) => {
   const [dress, setDress] = useState({
@@ -16,7 +18,7 @@ const AddDress = (props) => {
       axios
         .post(
           'http://localhost:8080/dress/',
-          dresses,
+          dress,
           {
             "Content-Type": "application/json",
           }
@@ -29,39 +31,40 @@ const AddDress = (props) => {
   const { handleChange, values, errors, handleSubmit } = useForm();
   const handleInputChange = (e) => {
     handleChange(e);
-    setDress({ ...dresses, [e.target.name]: e.target.value });
+    setDress({ ...dress, [e.target.name]: e.target.value });
   };
 
   return (
-    <div className="add-dress">
-      <div className="add-dress__title-container">
-        <Link to="/">
-        <img className="add-dress__back-icon"src={arrowBack} />
-        </Link>
-        <h1 className="add-dress__title">Add Dress</h1>
-      </div>
-      <div className="add-dress__form-container">
-        <DressForm
+<div className='dress-container'>           
+    <div className="dress-container__background">
+
+        <Header />
+        <div className="back-arrow-box">
+            <NavLink to="/">
+                <img 
+                width="30"
+                src={arrowBack}
+                alt="back-arrow"
+            />
+            </NavLink>
+        </div>
+        <div className='overlay'>
+          <DressForm    
           handleInputChange={handleInputChange}
-          dresses={dresses}
+          dress={dress}
           setDress={setDress}
           errors={errors}
-          handleSubmit={handleSubmit}
-        />
-      </div>
-      <div className="add-dress__button-container">
-        <Link to='/'>
-        <button className="add-dress__button">Cancel</button>
-        </Link>
-        <button
+          handleSubmit={handleSubmit} />
+           <button
           onClick={AddDress}
           type="submit"
           value="submit"
-          className="add-dress__button--save"
+          className="dress-form-button"
         >
           + Add Dress
         </button>
-      </div>
+        </div>
+    </div> 
     </div>
   );
 };
