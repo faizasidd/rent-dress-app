@@ -1,9 +1,3 @@
-.dress-container {
-    margin: 0!important;
-    padding: 0!important;
-    font-family: Roboto,sans-serif;
-    box-sizing: border-box;
-}
 
 .dress-container__background {
     height: 100vh;
@@ -12,6 +6,30 @@
     background-image: url("../../assets/images/dress1.png"); 
     background-size: cover;
 }
+
+.dress-container__background1 {
+    height: 100vh;
+    width: 100%;
+    opacity: 1;
+    background-image: url("../../assets/images/dress2.png"); 
+    background-size: cover;
+}
+
+.dress-container__background2 {
+    height: 100vh;
+    width: 100%;
+    opacity: 1;
+    background-image: url("../../assets/images/dress3.png"); 
+    background-size: cover;
+}
+
+.dress-container__background3 {
+        height: 100vh;
+        width: 100%;
+        opacity: 1;
+        background-image: url("../../assets/images/dress4.png"); 
+        background-size: cover;
+    }
 
 .back-arrow-box {
     position: fixed;

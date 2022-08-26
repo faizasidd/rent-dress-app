@@ -6,10 +6,8 @@ import { NavLink } from 'react-router-dom';
 const DressContainer = () => {
 
     return (
-        <>
-    <div className='dress-container'>           
+        <>         
     <div className="dress-container__background">
-
         <img
             src={Logo}
             width="230"
@@ -27,7 +25,6 @@ const DressContainer = () => {
         </div>
         <div className='overlay'>
         </div>
-    </div> 
     </div>
     </>
     );

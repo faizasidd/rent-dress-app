@@ -10,7 +10,7 @@ const useForm = (callback) => {
     //all keys need to be in default object
 
     switch (name) {
-      case "contactPhone":
+      case "phone":
         if (
           !new RegExp(
             /^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/
@@ -21,13 +21,13 @@ const useForm = (callback) => {
 
           return {
             ...errors,
-            contactPhone: "Enter a valid phone number",
+            phone: "Enter a valid phone number",
           };
         } else {
-          return { ...errors, contactPhone: "" }; //this gets rid of the error message in the error object
+          return { ...errors, phone: "" }; //this gets rid of the error message in the error object
         }
         break;
-      case "contactEmail":
+      case "email":
         if (
           !new RegExp(
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -35,21 +35,21 @@ const useForm = (callback) => {
         ) {
           return {
             ...errors,
-            contactEmail: "Enter a valid email address",
+            email: "Enter a valid email address",
           };
         } else {
-          return { ...errors, contactEmail: "" };
+          return { ...errors, email: "" };
         }
         break;
 
-      case "contactName":
+      case "dressname":
         if (value.length === 0) {
           return {
             ...errors,
-            contactName: "This field is required",
+            dressname: "This field is required",
           };
         } else {
-          return { ...errors, contactName: "" };
+          return { ...errors, dressname: "" };
         }
         break;
       default:
@@ -77,14 +77,14 @@ const useForm = (callback) => {
   };
 
   const handleSubmit = (e, object) => {
-    //passing entire warehouse/inventory object
+    //passing entire object
     console.log("submitting", object);
     e.preventDefault();
 
     let existingErrors = {}; //object that holds all errors
 
     Object.keys(object || {}).forEach((key) => {
-      //looping through each key in the warehouse/inventory object
+      //looping through each key in the object
       //and validating its value
       //and returning an error object
       const newError = validate(e, key, object[key]);

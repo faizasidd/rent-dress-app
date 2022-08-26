@@ -5,14 +5,17 @@ import DressForm from "../DressForm/DressForm";
 import useForm from "../../utils/useForm";
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
+import { useParams} from "react-router-dom";
 import Header from "../Header/Header";
 
 const EditDress = (props) => {
   const [dress, setDress] = useState({});
 
+  const { id } = useParams();
+
   const fetchDress = () => {
     axios
-      .get(`http://localhost:8080/dress/${props.match.params.id}`)
+      .get(`http://localhost:8080/dress/${id}`)
       .then((response) => {
         setDress(response.data.dress);
       });
@@ -28,7 +31,7 @@ const EditDress = (props) => {
     if (handleSubmit(e, dress)) {
       axios
         .put(
-          `http://localhost:8080/dress/${props.match.params.id}`,
+          `http://localhost:8080/dress/${id}`,
           dress,
           {
             "Content-Type": "application/json",

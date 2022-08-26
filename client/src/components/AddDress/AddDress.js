@@ -1,20 +1,21 @@
 import React, { useState } from "react";
 // import "./AddDress.scss";
 import ".././DressForm/DressForm.scss"
+import ".././DressContainer/DressContainer.scss"
 import arrowBack from "../../assets/icons/back-arrow.png";
+import Logo from '../../assets/logo/logo.png'
 import DressForm from "../DressForm/DressForm";
 import useForm from "../../utils/useForm";
 import axios from 'axios';
-import { NavLink } from 'react-router-dom';
-import Header from "../Header/Header";
+import { NavLink, useHistory } from 'react-router-dom';
 
 const AddDress = (props) => {
   const [dress, setDress] = useState({
   });
 
-  const AddDress = (e) => {
+  const history = useHistory()
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (handleSubmit(e, dress)) {
       axios
         .post(
           'http://localhost:8080/dress/',
@@ -25,20 +26,24 @@ const AddDress = (props) => {
         )
         .then((response) => {
           console.log(response);
+          history.push(response.data)
         });
-    }
   };
-  const { handleChange, values, errors, handleSubmit } = useForm();
+  const { handleChange, values, errors } = useForm();
   const handleInputChange = (e) => {
     handleChange(e);
     setDress({ ...dress, [e.target.name]: e.target.value });
   };
 
-  return (
-<div className='dress-container'>           
-    <div className="dress-container__background">
-
-        <Header />
+  return (       
+    <>
+     <div className="dress-container__background2">
+        <img
+            src={Logo}
+            width="230"
+            className="top-centered-logo"
+            alt="Say Yes To A Dress Logo"
+        />
         <div className="back-arrow-box">
             <NavLink to="/">
                 <img 
@@ -47,25 +52,26 @@ const AddDress = (props) => {
                 alt="back-arrow"
             />
             </NavLink>
-        </div>
+        </div>  
         <div className='overlay'>
           <DressForm    
           handleInputChange={handleInputChange}
           dress={dress}
           setDress={setDress}
           errors={errors}
-          handleSubmit={handleSubmit} />
-           <button
-          onClick={AddDress}
+          handleSubmit={handleSubmit} 
+          />
+           {/* <button
+          onClick={addDress}
           type="submit"
           value="submit"
           className="dress-form-button"
         >
           + Add Dress
-        </button>
+        </button> */}
         </div>
-    </div> 
-    </div>
+        </div>
+        </>
   );
 };
 

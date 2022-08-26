@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams, Link } from 'react-router-dom';
 import { ImageList, ImageListItem, ImageListItemBar, ListSubheader, Container, Card, Rating } from '@mui/material';
 import { StarBorder } from '@mui/icons-material';
 import DressContainer from "../DressContainer/DressContainer";
-
+import EditIcon from "../../assets/icons/edit-24px.svg";
+import DeleteIcon from "../../assets/icons/delete_outline-24px.svg";
+// import './DressList.scss'
 
 const DressList = () => {
 
   const history = useHistory();
+  const { id } = useParams();
 
   const [dress, setDress] = useState([])
   useEffect(() => {
@@ -24,6 +27,19 @@ const DressList = () => {
       })
       .catch(error => console.log(error))
   }
+
+  const deleteDress = (id) => {
+    axios
+        .delete(
+            `http://localhost:8080/dress/${id}`,
+            
+        )
+        .then((response) => {
+            setDress(prev => [...prev.filter(item => item.id !== id)])
+            console.log(response);
+        })
+        .catch(error => console.log(error))
+}
 
   return (
     <>
@@ -41,6 +57,21 @@ const DressList = () => {
           }}>
           {dress.map((item) => (
             <Card key={item.id} >
+              <Link to={`/dress/edit/${item.id}`} className="container2__link">
+                                        <div className="link__button-container">
+                                            <img
+                                                className="button__image"
+                                                src={EditIcon}
+                                                alt="Edit Icon"
+                                            />
+                                        </div>
+                                    </Link>
+                                    <img
+                                                className="button__image"
+                                                src={DeleteIcon}
+                                                alt="Delete Icon"
+                                                onClick={() => deleteDress(item.id)} 
+                                            />
               <ImageListItem sx={{ height: '100% !important' }} image={item} position="top">
                 <img
                   src={item.image}
@@ -74,3 +105,5 @@ const DressList = () => {
 }
 
 export default DressList;
+
+

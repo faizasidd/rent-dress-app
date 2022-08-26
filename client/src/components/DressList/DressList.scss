@@ -1,0 +1,18 @@
+@use '../../styles/partials/mixins' as *;
+
+.container2__link{
+    height: 1.75rem;
+
+    .link__button-container{
+        height: 100%;
+
+        .button__image{
+            height: 10px;
+            width: 2rem;
+
+            @include tablet{
+                height: 1.5rem;
+            }
+        }
+    }
+}

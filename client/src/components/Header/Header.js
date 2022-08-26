@@ -15,7 +15,7 @@ const Header = () => {
             alt="Say Yes To A Dress Logo"
         />
         <div className="back-arrow-box">
-            <NavLink to="/">
+            <NavLink to="/dress">
                 <img 
                 width="30"
                 src={arrowBack}

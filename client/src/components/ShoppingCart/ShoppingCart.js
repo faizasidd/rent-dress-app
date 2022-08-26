@@ -6,9 +6,9 @@ import Button from '@mui/material/Button';
 import { useParams } from "react-router-dom";
 
 
-const ShoppingCart = () => {
+const ShoppingCart = ({cart}) => {
 
-  const [dress, setDress] = useState([])
+  // const [dress, setDress] = useState(cart)
   // useEffect(() => {
   //   singleDress()
   // }, [])
@@ -24,17 +24,21 @@ const ShoppingCart = () => {
   //     .catch(error => console.log(error))
   // }
 
+  console.log({cart})
+
   return (
     <>
     <Header/>
     <div className="shopping-cart">
       <h2>Your Cart</h2>
-      <h2>Total: $</h2>
+      <h2>Total: $ {cart.map(item => item.buyprice).reduce((prev, cur) => prev + cur, 0)}</h2>
     </div>
     <div className="shopping-cart-container">
-      <div className="shopping-cart-container-flex">
+      {cart.map((dress, idx) => {
+        return (
+      <div key={idx} className="shopping-cart-container-flex">
         <div className="shopping-cart-container-grow">
-          <div><img className="shopping-cart__img">{dress.image}</img></div>
+          <div><img style={{width: 40, height: 40}} className="shopping-cart__img" src={dress.image} /></div>
           <div className="shopping-cart__summary">
           <div className="shopping-cart__summary-container">
           <div className="shopping-cart__summary-name">{dress.dressname}</div>
@@ -63,6 +67,8 @@ const ShoppingCart = () => {
         </div>
         </div>
       </div>
+        )
+      })}
     </div>
     </>
   );
