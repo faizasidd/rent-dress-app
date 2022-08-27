@@ -14,11 +14,9 @@ exports.index = (_req, res) => {
 
 exports.singleDress = (req, res) => {
   knex('dress')
-    .join('listing', 'listing.id', 'dress.id')
+    .join('listing', 'listing.dress_id', 'dress.id')
     .select('dress.id','dress.dressname', 'dress.description', 'dress.condition', 'dress.designer', 'dress.size', 'dress.image', 'listing.originalprice', 'listing.buyprice')
-    // .select('dress.id','dress.dressname', 'dress.description', 'dress.condition', 'dress.designer', 'dress.size', 'dress.image')
     .where({ dress_id: req.params.id })
-    // .where({ id: req.params.id })
     .then((data) => {
       // If record is not found, respond with 404
       if (!data.length) {
@@ -49,30 +47,19 @@ exports.dressCategory = (req, res) => {
 };
 
 exports.addDress = (req, res) => {
-  // Validate the request body for required data   
-  console.log({req}) 
-  const dressDetails = req.body;  
-
-  // const dressDetails = req.body.dressDetails;  
-  const listingDetails = {}                                                                               
-  // if (!dressDetails.dressname || !dressDetails.designer || !dressDetails.category_id || !dressDetails.image || !dressDetails.size || !dressDetails.description || !listingDetails.buyprice) {
-  if (!dressDetails.dressname || !dressDetails.designer || !dressDetails.category_id || !dressDetails.image || !dressDetails.size || !dressDetails.description|| !dressDetails.buyprice || !dressDetails.rentprice || !dressDetails.originalprice) {
+  // Validate the request body for required data  
+  const dressDetails = req.body.dressDetails;  
+  const listingDetails = req.body.listingDetails;                                                                                
+  if (!dressDetails.dressname || !dressDetails.designer || !dressDetails.category_id || !dressDetails.image || !dressDetails.size || !dressDetails.description || !listingDetails.buyprice) {
     return res.status(400).send('Please make sure to provide name, designer, category, image, description and price fields in a request');
   }
-  const dressDetails2 = {...dressDetails}
-  delete dressDetails2["buyprice"]
-  delete dressDetails2["rentprice"]
-  delete dressDetails2["originalprice"]
-  dressDetails2.image = 'http://localhost:8080/images/dress6.png'
+  dressDetails.image = 'http://localhost:8080/images/dress6.png'
   let id
 
   knex('dress')
-    .insert(dressDetails2)
+    .insert(dressDetails)
     .then ((data) => {
 
-     listingDetails.buyprice = dressDetails.buyprice
-     listingDetails.rentprice = dressDetails.rentprice
-     listingDetails.originalprice = dressDetails.originalprice
      listingDetails.user_id = 1
      listingDetails.dress_id = data[0]
      id = data[0]
@@ -82,24 +69,27 @@ exports.addDress = (req, res) => {
     .then((data) => {
       // For POST requests we need to respond with 201 and the location of the newly created record
       const newDressURL = `/dress/${id}`;
-      // const newDressURL = `/dress/${data[0]}`;
       res.status(201).location(newDressURL).send(newDressURL);
     })
     .catch((err) => res.status(400).send(`Error creating Dress: ${err}`));
 };
 
 exports.updateDress = (req, res) => {
+  console.log(`id sent: ${req.params.id}`)
   const dressDetails = req.body.dressDetails;  
-  const listingDetails = req.body.listingDetails;       
+  const listingDetails = req.body.listingDetails;   
+  console.log({dressDetails, listingDetails})    
   knex('dress')
     .update(dressDetails, listingDetails)
     .where({ id: req.params.id })
-    .then(() => {
+    .then((result) => {
+      console.log({result})
       res.status(200).send(`Dress with id: ${req.params.id} has been updated`);
     })
-    .catch((err) =>
+    .catch((err) => {
+      console.log({err})
       res.status(400).send(`Error updating Dress ${req.params.id} ${err}`)
-    );
+    });
 };
 
 exports.deleteDress = (req, res) => {
