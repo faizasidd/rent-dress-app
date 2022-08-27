@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useHistory, useParams, Link } from 'react-router-dom';
+import SearchDress from '../SearchDress/SearchDress';
+import { useHistory, useParams, NavLink } from 'react-router-dom';
 import { ImageList, ImageListItem, ImageListItemBar, ListSubheader, Container, Card, Rating } from '@mui/material';
 import { StarBorder } from '@mui/icons-material';
 import DressContainer from "../DressContainer/DressContainer";
@@ -30,24 +31,24 @@ const DressList = () => {
 
   const deleteDress = (id) => {
     axios
-        .delete(
-            `http://localhost:8080/dress/${id}`,
-            
-        )
-        .then((response) => {
-            setDress(prev => [...prev.filter(item => item.id !== id)])
-            console.log(response);
-        })
-        .catch(error => console.log(error))
-}
+      .delete(
+        `http://localhost:8080/dress/${id}`,
+
+      )
+      .then((response) => {
+        setDress(prev => [...prev.filter(item => item.id !== id)])
+        console.log(response);
+      })
+      .catch(error => console.log(error))
+  }
 
   return (
     <>
       <DressContainer />
       <ImageListItem key="Subheader" cols={2}>
-        <ListSubheader component="div">Our Latest Collection</ListSubheader>
+        <ListSubheader component="div"><h2>Our Latest Collection</h2></ListSubheader>
       </ImageListItem>
-
+      <SearchDress />
       <Container>
         <ImageList gap={9}
           sx={{
@@ -57,21 +58,22 @@ const DressList = () => {
           }}>
           {dress.map((item) => (
             <Card key={item.id} >
-              <Link to={`/dress/edit/${item.id}`} className="container2__link">
-                                        <div className="link__button-container">
-                                            <img
-                                                className="button__image"
-                                                src={EditIcon}
-                                                alt="Edit Icon"
-                                            />
-                                        </div>
-                                    </Link>
-                                    <img
-                                                className="button__image"
-                                                src={DeleteIcon}
-                                                alt="Delete Icon"
-                                                onClick={() => deleteDress(item.id)} 
-                                            />
+              {/* If statement if dress id is > 8 return this div else dont show it */}
+              {dress.length > 8 && <div className="link__button-container">
+                <NavLink to={`/edit/${item.id}`} className="container2__link">
+                  <img
+                    className="button__image"
+                    src={EditIcon}
+                    alt="Edit Icon"
+                  />
+                </NavLink>
+                <img
+                  className="button__image1"
+                  src={DeleteIcon}
+                  alt="Delete Icon"
+                  onClick={() => deleteDress(item.id)}
+                />
+              </div>}
               <ImageListItem sx={{ height: '100% !important' }} image={item} position="top">
                 <img
                   src={item.image}

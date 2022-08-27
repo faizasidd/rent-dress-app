@@ -2,17 +2,29 @@
 
 .container2__link{
     height: 1.75rem;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
 
     .link__button-container{
         height: 100%;
+       display:flex;
+       justify-content: space-between;
 
         .button__image{
             height: 10px;
             width: 2rem;
+            display:flex;
+        
+        .button__image1{
+            height: 10px;
+            width: 2rem;
+             display:flex;
 
             @include tablet{
                 height: 1.5rem;
             }
         }
     }
+}
 }

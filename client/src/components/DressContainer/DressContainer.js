@@ -6,27 +6,27 @@ import { NavLink } from 'react-router-dom';
 const DressContainer = () => {
 
     return (
-        <>         
-    <div className="dress-container__background">
-        <img
-            src={Logo}
-            width="230"
-            className="top-centered-logo"
-            alt="Say Yes To A Dress Logo"
-        />
-        <div className="back-arrow-box">
-            <NavLink to="/">
-                <img 
-                width="30"
-                src={arrowBack}
-                alt="back-arrow"
-            />
-            </NavLink>
-        </div>
-        <div className='overlay'>
-        </div>
-    </div>
-    </>
+        <>
+            <div className="dress-container__background">
+                <img
+                    src={Logo}
+                    width="230"
+                    className="top-centered-logo"
+                    alt="Say Yes To A Dress Logo"
+                />
+                <div className="back-arrow-box">
+                    <NavLink to="/">
+                        <img
+                            width="30"
+                            src={arrowBack}
+                            alt="back-arrow"
+                        />
+                    </NavLink>
+                </div>
+                <div className='overlay'>
+                </div>
+            </div>
+        </>
     );
 };
 

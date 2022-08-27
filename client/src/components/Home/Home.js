@@ -10,8 +10,8 @@ import * as React from "react";
 
 function Home() {
 
-        return (
-            <>
+    return (
+        <>
             <div>
                 <img
                     src={Logo}
@@ -23,11 +23,11 @@ function Home() {
                     <li className="tl"><NavLink to="/dress"><img src={Dress1} alt="wedding Aline dress" /><div><h3>Buy Dress</h3></div></NavLink></li>
                     <li className="tr"><NavLink to="/add"><img src={Dress2} alt="wedding gown" /><div><h3>Sell Dress</h3></div></NavLink></li>
                     <li className="bl"><NavLink to="/rent"><img src={Dress3} alt="wedding dress" /><div><h3>Rent Dress</h3></div></NavLink></li>
-                    <li className="br"><NavLink to="/signup"><img src={Dress4} alt="wedding dress" /><div><h3>Signup/Signin</h3></div></NavLink></li>
+                    <li className="br"><NavLink to="/login"><img src={Dress4} alt="wedding dress" /><div><h3>Login/Register</h3></div></NavLink></li>
                 </ul>
             </div>
-            </>
-        );
-    }
+        </>
+    );
+}
 
 export default Home;
